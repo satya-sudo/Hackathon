@@ -30,6 +30,7 @@ class UserProfile(models.Model):
 
 class Gig(models.Model):
     Poster = models.ForeignKey(User,on_delete=models.CASCADE,related_name='gigs')
+    title =  models.CharField(max_length=40,default='Untitled')
     description = models.TextField(blank = True)
     gig_type =  models.CharField(max_length=40,choices=service_type,default='NULL')
     location =  models.CharField(blank=True,default="Not Set Yet",max_length=30)

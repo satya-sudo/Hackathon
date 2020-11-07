@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded',() =>{
         
     }
     try {
-        document.querySelector('#full-screen').addEventListener('click',() => fullscreentoggle());
+        document.querySelector('#addGigs').addEventListener('click',() => addGigtToggle());
     } catch (err) {
         console.log(err);
         
     }
     try{
-        document.querySelector('#comment-toggle').addEventListener('click',() => commentbox());
+        document.querySelector('#allGigs').addEventListener('click',() => allGigToggle());
     } catch (err){
         console.log(err)
     }
@@ -190,4 +190,28 @@ function saveEdits(){
     });
     setTimeout(() => {location.reload();},600);
 
+}
+
+function addGigtToggle(){
+    x = document.querySelector('#form-gig');
+    y = document.querySelector('#all-gig');
+    if (x.style.display === '' || x.style.display == 'none'){
+        x.style.display = 'block';
+       
+        y.style.display = 'none';
+    }
+    x.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+    //window.scrollBy(0,500);
+}
+
+function allGigToggle(){
+    x = document.querySelector('#form-gig');
+    y = document.querySelector('#all-gig');
+    if (y.style.display === '' || y.style.display == 'none'){
+        y.style.display = 'block';
+       
+        x.style.display = 'none';
+    }
+    y.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+    
 }
