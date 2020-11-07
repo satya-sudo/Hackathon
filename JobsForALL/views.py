@@ -47,8 +47,24 @@ def handle_json_request(request,data):
 
         except User.DoesNotExist:
             return 
+    elif data['type'] == 'closeGig':
+        print(data['pk'])
+        try:
+            gig = Gig.objects.get(pk=int(data['pk']))
+            gig.active = False
+            gig.save()
+            print(data['pk'])
+        except:
+            pass
 
 
+    elif data['type'] == 'declineGig':
+        try:
+            gig = Gig.objects.get(pk=int(data['pk']))
+            gig.assign =  None
+            gig.save()       
+        except:
+            pass
 
 # Create your views here.
 
@@ -167,7 +183,12 @@ def user_view(request,pk):
         if requested_user.userprofile.usertype == 'employee':
             employee = True
             all_gigs =  Gig.objects.all().filter(assign=requested_user,active=False).order_by('-created_on')
-            AssignGig = Gig.objects.all().filter(assign=requested_user,active=True)
+            try:
+                AssignGig = Gig.objects.all().filter(assign=requested_user,active=True).order_by('-created_on')[0]
+            except:
+                AssignGig = False
+            print(employee)
+            #print(AssignGig.location)
         else:
             all_gigs =  Gig.objects.all().filter(poster=requested_user).order_by('-created_on')
             AssignGig = False
@@ -176,9 +197,7 @@ def user_view(request,pk):
 
         return render(request,"JobsForALL/profile.html",{
             "requested_user":requested_user,
-            'self_view':self_view,'message':message,'employee':employee,'all_gigs':all_gigs,'AssignGig':AssignGig
-
-        }) 
+            'self_view':self_view,'message':message,'employee':employee,'all_gigs':all_gigs,'AssignGig':AssignGig}) 
 
     except User.DoesNotExist:
         return HttpResponseRedirect(reverse("index")) 

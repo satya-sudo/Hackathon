@@ -30,12 +30,17 @@ document.addEventListener('DOMContentLoaded',() =>{
         console.log(err);
     }
     try{
-        document.querySelector('#n_ur').addEventListener('click',() => remove_from_libray())
+        document.querySelector('#contactPoster').addEventListener('click',() => contactPoster())
     } catch (err){
         console.log(err);
     }
     try{
-        document.querySelector('#d_ur').addEventListener('click',() => disabled_libray())
+        document.querySelector('#acceptGig').addEventListener('click',() => accept_gig())
+    } catch (err){
+        console.log(err);
+    }
+    try{
+        document.querySelector('#declineGig').addEventListener('click',() => decline_gig())
     } catch (err){
         console.log(err);
     }
@@ -244,4 +249,48 @@ function  AssignToggle(){
     y.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
     
 
+}
+function accept_gig(){
+    let location_current = window.location.href;
+    let pk = document.querySelector('#pk').innerHTML
+    pk = parseInt(pk)
+    console.log(pk)
+    fetch(location_current,{
+        method: 'PUT',
+        body: JSON.stringify({
+            type: 'closeGig',
+            pk: pk
+        }),
+        credentials: 'same-origin',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken')
+        }
+    });
+    let s = document.querySelector('#tootsz');
+    s.innerHTML = 'You have accepted the gig!'
+}    
+
+
+function decline_gig(){
+    let location_current = window.location.href;
+    let pk = document.querySelector('#pk').innerHTML
+    pk = parseInt(pk)
+    
+    fetch(location_current,{
+        method: 'PUT',
+        body: JSON.stringify({
+            type: 'declineGig',
+            pk: pk
+        }),
+        credentials: 'same-origin',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken')
+        }
+    });
+    let s = document.querySelector('#tootsz');
+    s.innerHTML = 'You declined the gig!'
+}    
+
+function contactPoster(){
+    
 }

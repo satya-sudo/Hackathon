@@ -89,31 +89,32 @@
                 {% endfor %}
             </div>
 
-            {% if self_view and employee %}
+        {% if self_view and employee %}
             
             <div class="col-12" id='Accept_gig' style="display: none;">
-                {% if AssignGig %}
-                <div class='gig-header' id='gig_{{ gig.pk }}'>
-                    <h4>{{AssignGig.title}}</h4>
+                {% if AssignGig != False and AssignGig != None %}
+                <div class='gig-header'>
+                    <h4>{{ AssignGig.title }}</h4>
                     <hr>
-                    <h4>Service type: {{AcceptGig.gig_type}}</h4>
-                    <h4>Location: {{AcceptGig.location}}</h4>
+                    <h1 style="display: none;" id='pk'>{{AssignGig.pk}}</h1>
+                    <h4>Service type: {{ AccignGig.gig_type }}</h4>
+                    <h4>Location: {{ AssignGig.location }}</h4>
                     <h4>Description...</h4>
-                    <p>{{gig.description}}</p>
-                    <h4>Posted By : <a href="{% url 'profile' AssignGig.poster.pk %}"></a>{{AssignGig.poster}}</h4>
+                    <p>{{ AccegnGig.description }}</p>
+                    <h4>Posted By : <a href="{% url 'profile' AssignGig.poster.pk %}">{{AssignGig.poster.username}}</a></h4>
                     <hr>
-                    <div>
-                        <div class='col-lg-12 tool-panel'>
-                           <li id='contactPoster'>Contact Poster</li>
+                    <div id='tootsz'>
+                        <ul style="list-style: none;" class='col-lg-12 tool-panel' >
+                           <li  id='contactPoster'>Contact Poster</li>
                            <li id='acceptGig'>accept</li>
                            <li id='declineGig'>decline</li>
-                        </div>
+                        </ul>
                     </div>
                     
                 </div>
                 {% else %}
             <h2>No gigs are  Assign yet</h2>
-            {% endif %}
+                {% endif %}
             </div>
             
         
