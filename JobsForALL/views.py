@@ -1,9 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponseRedirect
 from django.http import HttpResponse
+from django.urls import reverse
+
 
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
+
+
+#  importing models
+
+from .models import User,Employer,Employee
 
 # Some Quotes
 
@@ -47,8 +54,8 @@ def register(request):
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
-        firstname =request.POST["firstname"]
-        lastname =request.POST["lastname"]
+        firstname =request.POST["fullname"]
+        usertype =  request.POST['Usertype']
 
 
         # Ensure password matches confirmation
@@ -64,14 +71,20 @@ def register(request):
         try:
             user = User.objects.create_user(username,email,password)
             user.save()
-            user_profile=User_profile(user=user)
-            user_profile.about = ""
-            user_profile.save()
-        except IndentationError:
+        except IntegrityError:
             return render(request,"JobsForALL/register.html",{
             "message": "Sorry,username already taken.",'quote':register_quote
             })       
 
+        if usertype == 'employer':
+            values = Employer(user=user)
+            values.name = firstname
+            values.save()
+            
+        elif usertype == 'employee':
+            values = Employee(user=user)
+            values.name = firstname
+            values.save()
         login(request,user)
         return HttpResponseRedirect(reverse("index"))
     else:

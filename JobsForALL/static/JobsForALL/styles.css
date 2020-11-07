@@ -511,4 +511,8 @@
         text-align: center;
     }
     
+    select{
+        background-color: black;
+        border: none;
+    }
 }
