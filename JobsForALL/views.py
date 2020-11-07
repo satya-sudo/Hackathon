@@ -10,7 +10,7 @@ from django.db import IntegrityError
 
 #  importing models
 
-from .models import User,UserProfile
+from .models import User,UserProfile,Gig
 
 import json
 
@@ -53,8 +53,7 @@ def handle_json_request(request,data):
 # Create your views here.
 
 def index(request):
-    return HttpResponse("Hello, world!")
-
+    return render(request,'JobsForALL/index.html')
 
 # login view 
 def login_view(request):
@@ -120,17 +119,36 @@ def register(request):
 
 
 def user_view(request,pk):
-   
+    
+    message = ''  
+
     if request.method == 'PUT':
         data = json.loads(request.body)
         handle_json_request(request,data)
 
-    """
-    if request.method == 'POST' and request.FILES['file']:
-        x = User_profile.objects.get(user=request.user)
-        x.profile_image = request.FILES['file']
-        x.save()
-    """
+    
+    if request.method == 'POST':
+        
+        try:
+            logged_user  = User.objects.get(pk=request.user.pk)
+        except:
+            return HttpResponseRedirect(reverse("index"))
+        if logged_user.pk == pk:
+            title = request.POST['Title']
+            discription  = request.POST['discription']
+            gigtype = request.POST['gigtype']
+            location =  request.POST['location']
+            if (content_valid_check(title) and content_valid_check(discription) and content_valid_check(gigtype) and  content_valid_check(location)) == False:
+                message += 'Gig not posted , fields missing!! <br> '
+            else:
+                gig  = Gig(poster=logged_user)
+                gig.title = title
+                gig.location = location
+                gig.description = discription
+                gig.gig_type = gigtype
+                gig.save()
+                message += 'Gig Posted <br>'
+            
     try:
         requested_user = User.objects.get(pk=pk)
 
@@ -139,7 +157,7 @@ def user_view(request,pk):
         if requested_user == request.user:
             self_view = True
                        
-        message = ''    
+          
         try: 
             if requested_user.userprofile.location == 'Not Set Yet':
                 message = 'Your profile is still incomplete..'
@@ -148,14 +166,19 @@ def user_view(request,pk):
         employee = False    
         if requested_user.userprofile.usertype == 'employee':
             employee = True
+            all_gigs =  Gig.objects.all().filter(assign=requested_user,active=False).order_by('-created_on')
+            AssignGig = Gig.objects.all().filter(assign=requested_user,active=True)
+        else:
+            all_gigs =  Gig.objects.all().filter(poster=requested_user).order_by('-created_on')
+            AssignGig = False
 
-       
+
 
         return render(request,"JobsForALL/profile.html",{
             "requested_user":requested_user,
-            'self_view':self_view,'message':message,'employee':employee
+            'self_view':self_view,'message':message,'employee':employee,'all_gigs':all_gigs,'AssignGig':AssignGig
 
         }) 
-    
+
     except User.DoesNotExist:
         return HttpResponseRedirect(reverse("index")) 

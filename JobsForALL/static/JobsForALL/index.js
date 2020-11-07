@@ -25,12 +25,7 @@ document.addEventListener('DOMContentLoaded',() =>{
         console.log(err)
     }
     try{
-        document.querySelector('#comment-box-button').addEventListener('click',() => post_comment())
-    } catch (err){
-        console.log(err);
-    }
-    try{
-        document.querySelector('#i_ur').addEventListener('click',() => add_to_libray())
+        document.querySelector('#allAssignedgig').addEventListener('click',() => AssignToggle())
     } catch (err){
         console.log(err);
     }
@@ -205,13 +200,48 @@ function addGigtToggle(){
 }
 
 function allGigToggle(){
-    x = document.querySelector('#form-gig');
-    y = document.querySelector('#all-gig');
+    try {
+        x = document.querySelector('#form-gig');
+        y = document.querySelector('#all-gig');
+        z = document.querySelector('#Accept_gig')
+    } catch (error) {
+        
+    }
+    
     if (y.style.display === '' || y.style.display == 'none'){
-        y.style.display = 'block';
+        
+            y.style.display = 'block';
+        try {
+            x.style.display = 'none';
+            
+        } catch (error) {
+            
+        }
+            
+        try {    
+           z.style.display = 'none';
+        } catch (error) {
+            
+        }
        
-        x.style.display = 'none';
     }
     y.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
     
+}
+
+function  AssignToggle(){
+    
+    
+    let y = document.querySelector('#all-gig');
+    let z = document.querySelector('#Accept_gig');
+    
+    if (z.style.display === '' || z.style.display == 'none'){
+        z.style.display = 'block';
+       
+        
+        y.style.display = 'none'
+    }
+    y.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+    
+
 }

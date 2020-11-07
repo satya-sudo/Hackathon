@@ -29,12 +29,12 @@ class UserProfile(models.Model):
 
 
 class Gig(models.Model):
-    Poster = models.ForeignKey(User,on_delete=models.CASCADE,related_name='gigs')
+    poster = models.ForeignKey(User,on_delete=models.CASCADE,related_name='gigs')
     title =  models.CharField(max_length=40,default='Untitled')
     description = models.TextField(blank = True)
     gig_type =  models.CharField(max_length=40,choices=service_type,default='NULL')
     location =  models.CharField(blank=True,default="Not Set Yet",max_length=30)
     active = models.BooleanField(default=True)
-    assign =  models.ForeignKey(User,on_delete=models.CASCADE,related_name='gigs_asigned')
-
+    assign =  models.ForeignKey(User,on_delete=models.CASCADE,related_name='gigs_asigned',blank=True,null=True)
+    created_on =  models.DateTimeField(auto_now_add=True)
 

@@ -4,9 +4,9 @@
     <div class="container">
 
         {% if message %}
-            <div class="message">{{ message }}</div>
+            <div class="message">{{ message|safe }}</div>
         {% endif %}
-
+        <!--  user  details -->
         <div class="row">
             <div class="col-lg-4 col-sm-12 login-quote">
                 {% if requested_user.userprofile.profile_image %}
@@ -38,20 +38,24 @@
             
         </div>
 
+        <!-- toot panal-->
         <div class="row" style="padding-top:15px ;">
             <div class='col-lg-12 tool-panel'>
                 <ul class="tool-items">
-                    {% if self_view %}
+                    {% if self_view and not employee %}
                     <li id='addGigs'>Add A Gig</li>
+                    {% endif %}
+                    {% if self_view  and employee %}
+                    <li id='allAssignedgig'>Assigned Gig</li>
                     {% endif %}
                     <li id='allGigs'>All Gigs</li>
                 </ul>
             </div>
-            {% if self_view %}
-            <form action="{% url 'register' %}" method="post" class="col-lg-12 col-sm-12" id='form-gig' style="display: none;">
+            {% if self_view and not employee %}
+            <form action="{% url 'profile' requested_user.pk %}" method="post" class="col-lg-12 col-sm-12" id='form-gig' style="display: none;">
                 {% csrf_token %}
                 <div class="form-group">
-                    <input class="form-control" type="text" name="Title" placeholder="Add a Title">
+                    <input class="form-control"  type="text" name="Title" placeholder="Add a Title">
                 </div>
                 <div class="form-group">
                     <textarea class="form-control cus-textarea" autofocus type="text" name="discription" placeholder="Add a discription.."></textarea>
@@ -64,12 +68,58 @@
                 <div class="form-group">
                     <input class="form-control" type="text" name="location" placeholder="Location of work...">
                 </div>  
-                <input class="cus-button" type="submit" value="Post The Gig">
+                <input class="cus-button" type="submit" id='PostTheGig' value="Post The Gig">
             </form>
             {% endif %}
-            <div class="col=12" id='all-gig' >
-                dsfguigsoefgoesgrowe
+
+
+            <div class="col-12" id='all-gig' >
+                {% for gig in all_gigs%}
+                    <div class='gig-header' id='gig_{{ gig.pk }}'>
+                        <h4>{{gig.title}}</h4>
+                        <hr>
+                        <h4>Service type: {{gig.gig_type}}</h4>
+                        <h4>Location: {{gig.location}}</h4>
+                        <h4>Description...</h4>
+                        <p>{{gig.description}}</p>
+                        
+                    </div>
+                {% empty %}
+                    <h3>No Gigs Here...</h3>
+                {% endfor %}
             </div>
+
+            {% if self_view and employee %}
+            
+            <div class="col-12" id='Accept_gig' style="display: none;">
+                {% if AssignGig %}
+                <div class='gig-header' id='gig_{{ gig.pk }}'>
+                    <h4>{{AssignGig.title}}</h4>
+                    <hr>
+                    <h4>Service type: {{AcceptGig.gig_type}}</h4>
+                    <h4>Location: {{AcceptGig.location}}</h4>
+                    <h4>Description...</h4>
+                    <p>{{gig.description}}</p>
+                    <h4>Posted By : <a href="{% url 'profile' AssignGig.poster.pk %}"></a>{{AssignGig.poster}}</h4>
+                    <hr>
+                    <div>
+                        <div class='col-lg-12 tool-panel'>
+                           <li id='contactPoster'>Contact Poster</li>
+                           <li id='acceptGig'>accept</li>
+                           <li id='declineGig'>decline</li>
+                        </div>
+                    </div>
+                    
+                </div>
+                {% else %}
+            <h2>No gigs are  Assign yet</h2>
+            {% endif %}
+            </div>
+            
+        
+        {% endif %}
+
+
         </div>
 
     </div>

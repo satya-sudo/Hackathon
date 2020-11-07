@@ -6,6 +6,8 @@
         box-sizing: border-box;
     }
     
+    
+
     nav{
         display: flex;
         justify-content: space-around;
@@ -162,7 +164,7 @@
         font-size: 19px;
     }
     
-    .poem-header{
+    .gig-header{
         background-color: whitesmoke;
         margin-top:20px;
         padding: 10px;
@@ -172,6 +174,12 @@
         font-size: 19px;
     }
     
+    .gig-header > h4{
+        text-align: left;
+        letter-spacing: 3px;
+        font-weight: bold;
+        text-transform: capitalize;
+    }    
     .poem-body{
         margin-top: 20px;
         padding: 10px;
@@ -203,7 +211,7 @@
     }
     
     hr{
-        color: 2px black solid;
+        border: 2px black solid;
     }
     
     .comments-pannel{
@@ -425,7 +433,8 @@
         font-size: 19px;
     }
     
-    .poem-header{
+    
+    .gig-header{
         background-color: #332940;
         margin-top:20px;
         padding: 10px;
@@ -433,8 +442,16 @@
         justify-content: space-around;
         text-align: left;
         font-size: 19px;
+        width: 100%;
     }
     
+    .gig-header > h4{
+        text-align: left;
+        letter-spacing: 3px;
+        font-weight: bold;
+        text-transform: capitalize;
+    }  
+
     .poem-body{
         margin-top: 20px;
         padding: 10px;
@@ -466,7 +483,7 @@
     }
     
     hr{
-        color: 2px black solid;
+        border: 2px white solid;
     }
     
     .comments-pannel{
