@@ -104,7 +104,7 @@ def register(request):
         email = request.POST["email"]
         firstname =request.POST["fullname"]
         usertype =  request.POST['Usertype']
-
+        phonenummber = request.POST['phonenumber']
 
         # Ensure password matches confirmation
         password = request.POST["password"]
@@ -126,6 +126,7 @@ def register(request):
         userProfile = UserProfile(user=user)
         userProfile.name = firstname
         userProfile.usertype = usertype
+        userProfile.phone_number =phonenummber
         userProfile.save()
 
         login(request,user)

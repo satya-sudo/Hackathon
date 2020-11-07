@@ -14,17 +14,15 @@
                 {% else %}
                     <i class="fas fa-user-circle fa-10x"></i>
                 {% endif %}
-                {% if self_view %}
-                <form action="{% url 'profile' requested_user.pk  %}" method="post"  enctype="multipart/form-data" >
-                    {% csrf_token %}
-                    <input type="file" accept="/image*" id='file' name='file' class="hidden-stuff">
-                    <label for="file"><i class="fas fa-camera col-12" id='upload_image'></i></label>   
-                </form>    
-                {% endif %}
+
             </div>
 
            <div class="col-lg-8 col-sm-12 profile_details">
-               <h3>{{requested_user.username}}</h3>
+               <div> <h3>{{requested_user.username}}</h3>
+               <div class="about">Phone number:{{requested_user.userprofile.phone_number}}</div>
+
+            </div>
+               
                <div class="name">Name: {{requested_user.userprofile.name}}</div>
                <div class="about">Location:{{requested_user.userprofile.location}}</div>
                {% if employee %}
@@ -105,7 +103,6 @@
                     <hr>
                     <div id='tootsz'>
                         <ul style="list-style: none;" class='col-lg-12 tool-panel' >
-                           <li  id='contactPoster'>Contact Poster</li>
                            <li id='acceptGig'>accept</li>
                            <li id='declineGig'>decline</li>
                         </ul>

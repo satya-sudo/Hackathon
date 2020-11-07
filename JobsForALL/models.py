@@ -25,7 +25,7 @@ class UserProfile(models.Model):
     location =  models.CharField(blank=True,default="Not Set Yet",max_length=30)
     usertype = models.CharField(max_length=35,choices=usertypes,default='employer')
     service_type = models.CharField(max_length=40,choices=service_type,default='NULL')
-
+    phone_number = models.IntegerField(null=True,blank=True)
 
 
 class Gig(models.Model):
