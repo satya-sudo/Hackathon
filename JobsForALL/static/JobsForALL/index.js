@@ -121,8 +121,8 @@ function editProfile(){
 
     let options = document.createElement('select')
     options.id = '#editform';
-    options.innerHTML = `<option value="employer">Employer</option>
-    <option value="employee">Employie</option>`;
+    options.innerHTML = `<option value="woodworker">woodworker</option>
+    <option value="plumber">plumber</option><option value="electricion">electricion</option><option value="Rajmistri">Rajmistri</option>`;
 
     let save_button = document.createElement('input');
     save_button.classList = 'cus-button';
