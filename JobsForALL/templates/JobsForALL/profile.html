@@ -13,6 +13,7 @@
                     <img src="{{requested_user.userprofile.profile_image.url }}" width="300px" height = '300px' alt="..." class="cus-img-circle">
                 {% else %}
                     <i class="fas fa-user-circle fa-10x"></i>
+                    <h6 id='Type'>{{requested_user.userprofile.usertype}}</h6>
                 {% endif %}
 
             </div>
@@ -60,8 +61,11 @@
                 </div>
                 <label for="inputfd">Gig type ... ?</label>
                     <select  id="inputfd" name='gigtype' form="form-gig">
-                        <option value="employer">Employer</option>
-                        <option value="employee">Employie</option>
+                        <option value="woodworker">woodworker</option>
+                        <option value="plumber">plumber</option>
+                        <option value="electricion">electricion</option>
+                        <option value="Rajmistri">Rajmistri</option>
+
                     </select>  
                 <div class="form-group">
                     <input class="form-control" type="text" name="location" placeholder="Location of work...">

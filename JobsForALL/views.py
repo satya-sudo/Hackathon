@@ -16,8 +16,8 @@ import json
 
 # Some Quotes
 
-Login_quote = 'Think about a quote for here sayan'
-register_quote = 'Think about a quote for here sayan'
+Login_quote = '“Technology now allows people to connect anytime, anywhere, to anyone in the world, from almost any device. This is dramatically changing the way people work, facilitating 24/7 collaboration with colleagues who are dispersed across time zones, countries, and continents.”'
+register_quote = '“Technology now allows people to connect anytime, anywhere, to anyone in the world, from almost any device. This is dramatically changing the way people work, facilitating 24/7 collaboration with colleagues who are dispersed across time zones, countries, and continents.”'
 
 # some util functions
 def content_valid_check(content):
@@ -176,7 +176,7 @@ def user_view(request,pk):
                        
           
         try: 
-            if requested_user.userprofile.location == 'Not Set Yet':
+            if requested_user.userprofile.location == 'Not Set Yet' and self_view:
                 message = 'Your profile is still incomplete..'
         except:
             pass

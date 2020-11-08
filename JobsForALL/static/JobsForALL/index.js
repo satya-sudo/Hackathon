@@ -135,8 +135,12 @@ function editProfile(){
     // replacing the old with new..
     parentdiv.replaceChild(name_div_entry,name_div);
     parentdiv.replaceChild(location_div_entry,location_div);
-    parentdiv.replaceChild(service_options,children[3]);
-    parentdiv.replaceChild(options,children[4]);
+    if( document.querySelector('#Type').innerHTML === 'employee'){
+        parentdiv.replaceChild(service_options,children[3]);
+        parentdiv.replaceChild(options,children[4]);
+
+    }
+    
     parentdiv.append(save_button)
     //parentdiv.replaceChild(label_for,children[4]);
     //parentdiv.append(save_button);

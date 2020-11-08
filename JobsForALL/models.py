@@ -11,7 +11,8 @@ service_type = (
     ('NULL','NULL'),
     ('woodworker','woodworker'),
     ('plumber','plumber'),
-    ('electricion','electricion')
+    ('electricion','electricion'),
+    ('Rajmistri','Rajmistri')
     
 )
 
@@ -25,7 +26,7 @@ class UserProfile(models.Model):
     location =  models.CharField(blank=True,default="Not Set Yet",max_length=30)
     usertype = models.CharField(max_length=35,choices=usertypes,default='employer')
     service_type = models.CharField(max_length=40,choices=service_type,default='NULL')
-    phone_number = models.IntegerField(null=True,blank=True)
+    phone_number = models.CharField(max_length=10,null=True,blank=True)
 
 
 class Gig(models.Model):
@@ -37,4 +38,3 @@ class Gig(models.Model):
     active = models.BooleanField(default=True)
     assign =  models.ForeignKey(User,on_delete=models.CASCADE,related_name='gigs_asigned',blank=True,null=True)
     created_on =  models.DateTimeField(auto_now_add=True)
-
