@@ -1,25 +1,43 @@
-                                          PSEUDO-CODE
+# Team   SUDO-CODE
 
-SATYAM SHREE                                                SAYAN SADHUKHA
-pH.-9304912990                                                 pH.-9334545130
+## About The Project 
+This is done as a part of the hackathon CODEFURRY 3.0
 
-LINK to GitHub repository : 
+## Topic -- JOBS FOR ALL
+The aim and purpose of the website:
+- The aim of the widsite is to provide a job source for the labour force of India.
+- During the pandamic, every one suffered. People lost thier job , people become home less and confused.
+- Undoutbly The labour force of India suffered the most
+- So what this website does of provide to the labour force some temparary job/gigs so that they could servive 
 
-LINK to website : 
+## Working and specification of the website 
+- To get started The user has to register himself/herself to the site
+- There two types off user
+    - The employee
+    - The employer 
+- The employer is the one who posts the job/gig 
+- The employee is the one who does the job
+- Once the employer posts the job/gig  the system automatically assigns the job t one of the employee in the job/gig site depending upon the job type
+- then The empployee can either accept or deny the gig/job after contacting the employer
 
-                                          
-                                                                  RepairHomeJob
+## Powering the webapp
+- Django on the backend
+- vannila JS on the front end
+- css html and bootstrap 
+- fonts from google fonts
+- icons from fontawesome
+- database Prosgress
+- deployed on heroku
 
-It is a website which is focussed on providing home repair services by technicians (are those who will get jobs). On landing on our homepage you can see our advertising and the different services available on our website. At the top right corner there are log in and register options. While registering yourself you have to specify yourself as an Employer or an Employee.
-On registering as employer(customer) you see a dashboard listing all repair services. On registering as employee he sees the works assigned to him. He can choose to accept or deny the repair work assigned to him.
-So there are two types of people employer and employee. Employer post gigs(repair works to be done) and then the system automatically assigns those gigs to employees who are in the area where repairs are to be done. 
-This site uses Django and Python at backend and uses vanilla js at front end along with html, css and bootstrap.
-Due to this Covid-19 pandemic lots of migrant labourers and workers have lost their jobs. So they can register themselves in this site and can get to work and get paid without searching for jobs. So it solves the given problem statement.
+
+### Due to this Covid-19 pandemic lots of migrant labourers and workers have lost their jobs. So they can register themselves in this site and can get to work and get paid without searching for jobs. So it solves the given problem statement.
 
 Prompts 1 and 2 have been implemented.
 
 
-## to get started
+## To get started
+- git clone
+- download python from python.or 
 - pip install -r requirements.txt
 - python manage.py makemigration
 - python manage.py migrate
