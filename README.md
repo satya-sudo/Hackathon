@@ -8,7 +8,7 @@ The aim and purpose of the website:
 - The aim of the widsite is to provide a job source for the labour force of India.
 - During the pandamic, every one suffered. People lost thier job , people become home less and confused.
 - Undoutbly The labour force of India suffered the most
-- So what this website does of provide to the labour force some temparary job/gigs so that they could servive 
+- So what this website does is provide to the labour force some temparary job/gigs so that they could servive 
 
 ## Working and specification of the website 
 - To get started The user has to register himself/herself to the site
@@ -16,7 +16,7 @@ The aim and purpose of the website:
     - The employee
     - The employer 
 - The employer is the one who posts the job/gig 
-- The employee is the one who does the job
+- The employee is the one who does the job/gig
 - Once the employer posts the job/gig  the system automatically assigns the job t one of the employee in the job/gig site depending upon the job type
 - then The empployee can either accept or deny the gig/job after contacting the employer
 
@@ -29,6 +29,7 @@ The aim and purpose of the website:
 - database Prosgress
 - deployed on heroku
 
+## the problem statement justification 
 
 ### Due to this Covid-19 pandemic lots of migrant labourers and workers have lost their jobs. So they can register themselves in this site and can get to work and get paid without searching for jobs. So it solves the given problem statement.
 
